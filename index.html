@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="StudyVerse — Your Smart Student Universe. All-in-one student productivity platform with study planning, quiz arena, Pomodoro focus timer, rewards, and AI copilot.">
+  <meta name="author" content="StudyVerse Team">
+  <meta name="theme-color" content="#6366f1">
+  <title>StudyVerse — Your Smart Student Universe | Plan Smart. Learn Better. Achieve More.</title>
+
+  <!-- Google Fonts Preconnect & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body data-theme="light">
+
+  <div id="app-root">
+
+    <!-- ===============================================================
+         COLLAPSIBLE SIDEBAR
+         =============================================================== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <a href="#dashboard" class="brand-link" id="brand-home-link">
+          <div class="brand-logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <div class="brand-info">
+            <span class="brand-name">StudyVerse</span>
+            <span class="brand-tagline">Student Universe</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Sidebar Navigation">
+        <div class="nav-section-label">Main Menu</div>
+        <a href="#dashboard" class="nav-item active" data-page="dashboard" id="nav-item-dashboard">
+          <i aria-hidden="true">🏠</i>
+          <span class="nav-label">Dashboard</span>
+        </a>
+
+        <a href="#planner" class="nav-item" data-page="planner" id="nav-item-planner">
+          <i aria-hidden="true">📅</i>
+          <span class="nav-label">Study Planner</span>
+          <span class="nav-badge" id="sidebar-pending-badge">3</span>
+        </a>
+
+        <a href="#quiz" class="nav-item" data-page="quiz" id="nav-item-quiz">
+          <i aria-hidden="true">🎯</i>
+          <span class="nav-label">Quiz Arena</span>
+        </a>
+
+        <a href="#rewards" class="nav-item" data-page="rewards" id="nav-item-rewards">
+          <i aria-hidden="true">🏆</i>
+          <span class="nav-label">Badges & XP</span>
+        </a>
+
+        <a href="#analytics" class="nav-item" data-page="analytics" id="nav-item-analytics">
+          <i aria-hidden="true">📊</i>
+          <span class="nav-label">My Progress</span>
+        </a>
+
+        <a href="#pomodoro" class="nav-item" data-page="pomodoro" id="nav-item-pomodoro">
+          <i aria-hidden="true">⏱️</i>
+          <span class="nav-label">Focus Timer</span>
+        </a>
+
+        <div class="nav-section-label" style="margin-top: 1rem;">Intelligence</div>
+        <a href="#ai-copilot" class="nav-item" data-page="ai-copilot" id="nav-item-ai">
+          <i aria-hidden="true">✨</i>
+          <span class="nav-label">AI Copilot</span>
+          <span class="badge badge-purple" style="font-size: 0.65rem; margin-left: auto;">AI</span>
+        </a>
+
+        <a href="#settings" class="nav-item" data-page="settings" id="nav-item-settings">
+          <i aria-hidden="true">⚙️</i>
+          <span class="nav-label">Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user" onclick="App.navigateTo('settings')" style="cursor: pointer;"
+          title="Profile Settings">
+          <div class="user-avatar" id="sidebar-user-avatar">🎓</div>
+          <div class="user-info">
+            <span class="user-name" id="sidebar-user-name">Alex Sharma</span>
+            <span class="user-role" id="sidebar-user-role">BCA (AI & ML)</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ===============================================================
+         MAIN CONTENT WRAPPER
+         =============================================================== -->
+    <div class="main-content-wrapper">
+
+      <!-- Sticky Top Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" title="Toggle Sidebar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+
+          <button class="sidebar-toggle-btn mobile-menu-btn" id="mobile-menu-toggle-btn" style="display: none;"
+            title="Open Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+
+          <div class="header-page-title">
+            <h1 class="header-title-text" id="header-page-title">Home Dashboard</h1>
+            <span class="header-subtitle-text" id="header-page-subtitle">Overview of your academic universe</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="stat-pill stat-pill-streak" title="Active Study Streak">
+            <span class="stat-pill-label">Streak:</span>
+            <span id="header-stat-streak">5 🔥</span>
+          </div>
+
+          <div class="stat-pill stat-pill-xp" title="Total XP Earned">
+            <span class="stat-pill-label">XP:</span>
+            <span id="header-stat-xp">680 XP</span>
+          </div>
+
+          <button class="btn-icon" id="header-theme-toggle" title="Toggle Light/Dark Theme">
+            <span>🌙</span>
+          </button>
+
+          <div class="user-avatar" id="header-user-avatar" onclick="App.navigateTo('settings')"
+            style="cursor: pointer; width: 36px; height: 36px; font-size: 0.85rem;" title="Account Settings">
+            🎓
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Page Container -->
+      <main class="page-container">
+
+        <!-- ===========================================================
+             PAGE 1: HOME DASHBOARD
+             =========================================================== -->
+        <section id="section-dashboard" class="page-section active">
+          <!-- Welcome Hero Banner -->
+          <div class="welcome-banner">
+            <div class="welcome-content">
+              <span class="welcome-badge">🎓 BCA AI &amp; ML Scholar</span>
+              <h2 class="welcome-title" id="dash-welcome-title">Welcome back, Alex!</h2>
+              <p class="welcome-subtitle">Plan Smart. Learn Better. Achieve More. Ready to conquer your academic goals
+                today?</p>
+              <div class="welcome-quote">
+                <span>💬</span>
+                <span id="dash-welcome-quote">"The secret of getting ahead is getting started." — Mark Twain</span>
+              </div>
+            </div>
+            <div class="welcome-actions">
+              <button class="btn welcome-btn-white" onclick="TasksManager.openTaskModal()" id="dash-btn-add-task">
+                <span>+ Add Task</span>
+              </button>
+              <button class="btn welcome-btn-trans" onclick="App.navigateTo('quiz')" id="dash-btn-start-quiz">
+                <span>Start Quiz</span>
+              </button>
+              <button class="btn welcome-btn-trans" onclick="App.navigateTo('pomodoro')" id="dash-btn-focus">
+                <span>Focus Session</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Stats Grid -->
+          <div class="stats-grid">
+            <div class="card stat-card card-gradient-border">
+              <div class="stat-icon-wrapper stat-icon-indigo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 11l3 3L22 4"></path>
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <div class="stat-label">Tasks Completed</div>
+                <div class="stat-value" id="dash-stat-tasks">2 / 5</div>
+                <div class="stat-meta" id="dash-stat-tasks-meta">40% completed overall</div>
+              </div>
+            </div>
+
+            <div class="card stat-card card-gradient-border">
+              <div class="stat-icon-wrapper stat-icon-amber">
+                🔥
+              </div>
+              <div class="stat-info">
+                <div class="stat-label">Study Streak</div>
+                <div class="stat-value" id="dash-stat-streak">5 Days</div>
+                <div class="stat-meta">Active today • Keep it burning</div>
+              </div>
+            </div>
+
+            <div class="card stat-card card-gradient-border">
+              <div class="stat-icon-wrapper stat-icon-purple">
+                💎
+              </div>
+              <div class="stat-info">
+                <div class="stat-label">Total XP Points</div>
+                <div class="stat-value" id="dash-stat-xp">680 XP</div>
+                <div class="stat-meta">Rank: Level 3 Code Apprentice</div>
+              </div>
+            </div>
+
+            <div class="card stat-card card-gradient-border">
+              <div class="stat-icon-wrapper stat-icon-emerald">
+                ⏱️
+              </div>
+              <div class="stat-info">
+                <div class="stat-label">Weekly Focus Hours</div>
+                <div class="stat-value" id="dash-stat-hours">17.0 hrs</div>
+                <div class="stat-meta">+2.5 hrs vs last week</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Exam Countdown Banner -->
+          <div class="exam-countdown-card">
+            <div class="exam-countdown-info">
+              <div class="exam-badge-icon">⏳</div>
+              <div>
+                <div class="exam-title" id="dash-exam-title">AI &amp; Data Structures University Finals</div>
+                <div class="exam-date-text" id="dash-exam-date-display">Target Date: Loading...</div>
+              </div>
+            </div>
+
+            <div class="countdown-boxes">
+              <div class="countdown-box">
+                <div class="countdown-num" id="dash-cd-days">05</div>
+                <div class="countdown-unit">Days</div>
+              </div>
+              <div class="countdown-box">
+                <div class="countdown-num" id="dash-cd-hours">14</div>
+                <div class="countdown-unit">Hours</div>
+              </div>
+              <div class="countdown-box">
+                <div class="countdown-num" id="dash-cd-mins">32</div>
+                <div class="countdown-unit">Mins</div>
+              </div>
+              <div class="countdown-box">
+                <div class="countdown-num" id="dash-cd-secs">45</div>
+                <div class="countdown-unit">Secs</div>
+              </div>
+            </div>
+
+            <button class="btn btn-outline btn-sm" onclick="App.navigateTo('planner')" style="margin-left: auto;">
+              <span>View Exam Tasks</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <!-- Two-Column Grid: Today's Tasks + Copilot Recommendations -->
+          <div class="dashboard-grid">
+            <!-- Left: Today's Tasks -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">
+                    <span>📌</span>
+                    <span>Today's Priority Study Tasks</span>
+                  </h3>
+                  <div class="card-subtitle">Check off assignments as you complete them</div>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="TasksManager.openTaskModal()">
+                  <span>+ Add Task</span>
+                </button>
+              </div>
+
+              <div id="dash-today-tasks-list">
+                <!-- Dynamically populated by TasksManager.syncDashboard() -->
+              </div>
+            </div>
+
+            <!-- Right: AI Study Recommendations & Daily Goal -->
+            <div>
+              <div class="card ai-recommendation-card" id="dash-ai-recommendation-content">
+                <!-- Dynamically populated by AIAssistant -->
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <span>🎯</span>
+                    <span>Daily Study Target</span>
+                  </h3>
+                  <span class="badge badge-success">On Track</span>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                  <div
+                    style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.4rem;">
+                    <span>Goal: 3.5 Hours</span>
+                    <span style="color: var(--color-primary);">2.5 / 3.5 hrs</span>
+                  </div>
+                  <div class="progress-container" style="height: 10px;">
+                    <div class="progress-bar" style="width: 71%;"></div>
+                  </div>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-secondary);">
+                  <span>1.0 hr remaining today</span>
+                  <button class="btn btn-sm btn-outline" onclick="App.navigateTo('pomodoro')">
+                    <span>Start 25m Pomodoro</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===========================================================
+             PAGE 2: SMART STUDY PLANNER
+             =========================================================== -->
+        <section id="section-planner" class="page-section">
+          <div class="planner-controls">
+            <div class="planner-filter-row">
+              <div class="search-input-wrapper" style="max-width: 280px;">
+                <i>🔍</i>
+                <input type="text" id="tasks-search-input" class="form-control" placeholder="Search tasks, subjects...">
+              </div>
+
+              <div class="filter-tabs">
+                <button class="filter-chip task-status-filter active" data-status="all">
+                  All Tasks (<span id="planner-total-count">0</span>)
+                </button>
+                <button class="filter-chip task-status-filter" data-status="pending">
+                  Pending (<span id="planner-pending-count">0</span>)
+                </button>
+                <button class="filter-chip task-status-filter" data-status="completed">
+                  Completed (<span id="planner-completed-count">0</span>)
+                </button>
+              </div>
+
+              <select id="tasks-subject-filter" class="form-control" style="width: auto; min-width: 140px;">
+                <option value="all">All Subjects</option>
+                <option value="Data Structures">Data Structures</option>
+                <option value="Machine Learning">Machine Learning</option>
+                <option value="Python">Python</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="AI & ML">AI &amp; ML</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Web Development">Web Development</option>
+              </select>
+
+              <select id="tasks-priority-filter" class="form-control" style="width: auto; min-width: 130px;">
+                <option value="all">All Priorities</option>
+                <option value="high">High Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="low">Low Priority</option>
+              </select>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+              <div class="view-mode-toggle">
+                <button class="view-mode-btn active" data-view="cards" title="Cards View">
+                  <span>📑 Cards</span>
+                </button>
+                <button class="view-mode-btn" data-view="timetable" title="Weekly Timetable View">
+                  <span>📅 Timetable</span>
+                </button>
+              </div>
+
+              <button class="btn btn-primary" onclick="TasksManager.openTaskModal()">
+                <span>+ New Task</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Tasks View Container (Cards or Timetable) -->
+          <div id="tasks-container">
+            <!-- Rendered by TasksManager.renderTasks() -->
+          </div>
+        </section>
+
+        <!-- ===========================================================
+             PAGE 3: QUIZ ARENA
+             =========================================================== -->
+        <section id="section-quiz" class="page-section">
+          <!-- View 1: Subject Selection Arena -->
+          <div id="quiz-arena-view">
+            <div class="card card-gradient-border" style="margin-bottom: 2rem; padding: 2rem;">
+              <div
+                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                  <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.4rem;">
+                    🎯 Quiz Arena: Test Your Knowledge
+                  </h2>
+                  <p style="color: var(--text-secondary); font-size: 0.92rem; max-width: 600px;">
+                    Select an academic subject below to practice challenging multiple-choice questions. Earn +15 XP for
+                    every correct answer and unlock academic mastery badges!
+                  </p>
+                </div>
+                <div style="display: flex; gap: 0.75rem;">
+                  <button class="btn btn-secondary btn-sm" onclick="App.navigateTo('ai-copilot')">
+                    <span>✨ Generate Quiz from Notes</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Subject Cards Grid -->
+            <div class="quiz-subjects-grid" id="quiz-subjects-container">
+              <!-- Rendered by QuizManager.renderSubjectCards() -->
+            </div>
+          </div>
+
+          <!-- View 2: Active Quiz Player -->
+          <div id="quiz-player-view" style="display: none;">
+            <div class="quiz-player-container">
+              <div class="quiz-header-bar">
+                <button class="btn btn-outline btn-sm" onclick="QuizManager.backToArena()">
+                  <span>← Back to Arena</span>
+                </button>
+                <span class="badge badge-primary" id="quiz-player-subject-badge">Python Programming</span>
+                <div class="quiz-timer-pill" id="quiz-timer-pill">
+                  <span>⏱️</span>
+                  <span id="quiz-timer-text">30s</span>
+                </div>
+              </div>
+
+              <!-- Question Counter & Linear Progress -->
+              <div style="margin-bottom: 1.5rem;">
+                <div
+                  style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.4rem;">
+                  <span id="quiz-question-counter">Question 1 of 5</span>
+                  <span>Practice Session</span>
+                </div>
+                <div class="progress-container">
+                  <div class="progress-bar" id="quiz-progress-bar" style="width: 20%;"></div>
+                </div>
+              </div>
+
+              <!-- Question Box -->
+              <div class="quiz-question-box">
+                <div class="quiz-question-text" id="quiz-question-text">
+                  Loading question...
+                </div>
+                <pre class="quiz-code-block" id="quiz-code-block" style="display: none;"></pre>
+
+                <!-- Options -->
+                <div class="quiz-options-grid" id="quiz-options-container">
+                  <!-- Populated by QuizManager.renderCurrentQuestion() -->
+                </div>
+
+                <!-- Explanation Box -->
+                <div class="quiz-explanation-box" id="quiz-explanation-box">
+                  <div class="quiz-explanation-title">
+                    <span>💡</span>
+                    <span>Explanation &amp; Concept Breakdown</span>
+                  </div>
+                  <div class="quiz-explanation-text" id="quiz-explanation-content"></div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end;">
+                  <button class="btn btn-primary" id="quiz-next-btn" style="display: none;"
+                    onclick="QuizManager.nextQuestion()">
+                    <span>Next Question</span>
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- View 3: Quiz Scorecard -->
+          <div id="quiz-scorecard-view" style="display: none;">
+            <div class="quiz-scorecard">
+              <div class="scorecard-score-circle">
+                <span class="score-number" id="scorecard-num">5 / 5</span>
+                <span class="score-percent" id="scorecard-percent">100% Accuracy</span>
+              </div>
+
+              <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;"
+                id="scorecard-title">
+                🎉 Phenomenal Result!
+              </h2>
+              <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; max-width: 480px; margin-left: auto; margin-right: auto;"
+                id="scorecard-desc">
+                You demonstrated complete mastery over the tested topics.
+              </p>
+
+              <div class="badge badge-success" style="font-size: 0.88rem; padding: 0.4rem 1.25rem; margin-bottom: 2rem;"
+                id="scorecard-xp">
+                +95 XP Awarded
+              </div>
+
+              <div style="display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 2.5rem;">
+                <button class="btn btn-primary" onclick="QuizManager.retryCurrentQuiz()">
+                  <span>🔄 Retry Quiz</span>
+                </button>
+                <button class="btn btn-secondary" onclick="QuizManager.backToArena()">
+                  <span>🎯 Choose Another Subject</span>
+                </button>
+                <button class="btn btn-outline" onclick="App.navigateTo('analytics')">
+                  <span>📊 View My Analytics</span>
+                </button>
+              </div>
+
+              <!-- Question by Question Review -->
+              <div style="text-align: left;">
+                <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
+                  Detailed Question Review
+                </h3>
+                <div id="scorecard-review-list">
+                  <!-- Populated by QuizManager.renderScorecard() -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===========================================================
+             PAGE 4: REWARDS & ACHIEVEMENTS
+             =========================================================== -->
+        <section id="section-rewards" class="page-section">
+          <!-- Level & XP Hero Banner -->
+          <div class="rewards-hero-card">
+            <div>
+              <span class="level-badge-large">👑 Academic Rank</span>
+              <h2 class="level-title-large" id="rewards-level-title">Level 4: Algorithm Ace</h2>
+              <p style="opacity: 0.9; font-size: 0.95rem; margin-bottom: 1.25rem;" id="rewards-level-subtitle">
+                680 Total Lifetime XP Points Earned
+              </p>
+
+              <div>
+                <div
+                  style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.35rem;">
+                  <span>Next Rank: Level 5</span>
+                  <span id="rewards-xp-text">230 / 450 XP to Level 5</span>
+                </div>
+                <div class="progress-container" style="background: rgba(255, 255, 255, 0.25); height: 10px;">
+                  <div class="progress-bar" id="rewards-level-progress" style="width: 51%; background: #ffffff;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Active Streak Display -->
+            <div class="streak-card-display">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 700; font-size: 0.95rem;">🔥 Daily Study Streak</span>
+                <span class="badge" style="background: rgba(255,255,255,0.25); color: #ffffff;"
+                  id="rewards-streak-count">5 Days Active</span>
+              </div>
+              <div class="streak-pills-row" id="rewards-streak-pills">
+                <!-- Dynamically populated by RewardsManager.renderStreakCalendar() -->
+              </div>
+              <div style="font-size: 0.78rem; opacity: 0.85; text-align: center;">
+                Studying every consecutive day boosts recall retention by up to 60%!
+              </div>
+            </div>
+          </div>
+
+          <!-- Badges Showcase -->
+          <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary);">Academic Badges Gallery</h3>
+              <p style="font-size: 0.82rem; color: var(--text-secondary);">Earn badges by finishing study tasks, scoring
+                high on quizzes, and completing focus sessions.</p>
+            </div>
+          </div>
+
+          <div class="badges-grid" id="badges-grid-container">
+            <!-- Dynamically populated by RewardsManager.renderBadgesSection() -->
+          </div>
+        </section>
+
+        <!-- ===========================================================
+             PAGE 5: MY PROGRESS & ANALYTICS
+             =========================================================== -->
+        <section id="section-analytics" class="page-section">
+          <!-- Top Metrics Row -->
+          <div class="stats-grid" style="margin-bottom: 1.75rem;">
+            <div class="card stat-card">
+              <div class="stat-icon-wrapper stat-icon-indigo">⏱️</div>
+              <div class="stat-info">
+                <div class="stat-label">Total Focus Logged</div>
+                <div class="stat-value" id="analytics-stat-hours">17.0 hrs</div>
+                <div class="stat-meta">This week</div>
+              </div>
+            </div>
+
+            <div class="card stat-card">
+              <div class="stat-icon-wrapper stat-icon-purple">🎯</div>
+              <div class="stat-info">
+                <div class="stat-label">Average Quiz Score</div>
+                <div class="stat-value" id="analytics-stat-quiz">88%</div>
+                <div class="stat-meta">Across all subjects</div>
+              </div>
+            </div>
+
+            <div class="card stat-card">
+              <div class="stat-icon-wrapper stat-icon-emerald">✅</div>
+              <div class="stat-info">
+                <div class="stat-label">Task Completion Rate</div>
+                <div class="stat-value" id="analytics-stat-tasks">60%</div>
+                <div class="stat-meta">3 of 5 completed</div>
+              </div>
+            </div>
+
+            <div class="card stat-card">
+              <div class="stat-icon-wrapper stat-icon-amber">💎</div>
+              <div class="stat-info">
+                <div class="stat-label">Lifetime XP</div>
+                <div class="stat-value" id="analytics-stat-xp">680 XP</div>
+                <div class="stat-meta">Rank: Level 3</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Grid -->
+          <div class="analytics-charts-grid">
+            <!-- Chart 1: Weekly Study Hours -->
+            <div class="chart-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Weekly Study Hours</h3>
+                  <div class="card-subtitle">Hours spent in deep work and focus blocks</div>
+                </div>
+                <span class="badge badge-primary">Mon - Sun</span>
+              </div>
+              <div class="chart-canvas-wrapper">
+                <canvas id="chart-weekly-hours"></canvas>
+              </div>
+            </div>
+
+            <!-- Chart 2: Quiz Score Trends -->
+            <div class="chart-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Quiz Performance Trend</h3>
+                  <div class="card-subtitle">Accuracy percentages over recent practice quizzes</div>
+                </div>
+                <span class="badge badge-purple">Accuracy (%)</span>
+              </div>
+              <div class="chart-canvas-wrapper">
+                <canvas id="chart-quiz-trend"></canvas>
+              </div>
+            </div>
+
+            <!-- Chart 3: Tasks by Subject -->
+            <div class="chart-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Tasks Distribution by Subject</h3>
+                  <div class="card-subtitle">Study workload breakdown across courses</div>
+                </div>
+              </div>
+              <div class="chart-canvas-wrapper">
+                <canvas id="chart-tasks-subject"></canvas>
+              </div>
+            </div>
+
+            <!-- Chart 4: Subject Accuracy -->
+            <div class="chart-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Subject Mastery &amp; Accuracy</h3>
+                  <div class="card-subtitle">Performance breakdown by academic subject</div>
+                </div>
+              </div>
+              <div class="chart-canvas-wrapper">
+                <canvas id="chart-subject-mastery"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Smart Rule-Based Insights -->
+          <div class="card" style="margin-top: 1.5rem;">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span>💡</span>
+                <span>Automated Performance Insights</span>
+              </h3>
+              <span class="badge badge-primary">Smart Analysis</span>
+            </div>
+            <div class="insights-row" id="analytics-insights-container">
+              <!-- Dynamically populated by AnalyticsManager.renderSmartInsights() -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ===========================================================
+             PAGE 6: FOCUS TIMER (POMODORO)
+             =========================================================== -->
+        <section id="section-pomodoro" class="page-section">
+          <div class="timer-workspace">
+            <!-- Mode Selector -->
+            <div class="timer-mode-selector">
+              <button class="timer-mode-btn active" data-mode="focus">Focus (25m)</button>
+              <button class="timer-mode-btn" data-mode="shortBreak">Short Break (5m)</button>
+              <button class="timer-mode-btn" data-mode="longBreak">Long Break (15m)</button>
+            </div>
+
+            <!-- Circular SVG Countdown Ring -->
+            <div class="timer-circle-container">
+              <svg class="timer-svg" viewBox="0 0 300 300">
+                <defs>
+                  <linearGradient id="timer-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#6366f1" />
+                    <stop offset="50%" stop-color="#8b5cf6" />
+                    <stop offset="100%" stop-color="#3b82f6" />
+                  </linearGradient>
+                </defs>
+                <circle class="timer-circle-bg" cx="150" cy="150" r="130"></circle>
+                <circle class="timer-circle-progress" id="timer-circle-progress" cx="150" cy="150" r="130"
+                  stroke-dasharray="816.81" stroke-dashoffset="0"></circle>
+              </svg>
+
+              <div class="timer-center-content">
+                <div class="timer-time-display" id="timer-time-display">25:00</div>
+                <div class="timer-session-label" id="timer-session-label">Deep Focus Session</div>
+              </div>
+            </div>
+
+            <!-- Timer Action Buttons -->
+            <div class="timer-controls-row">
+              <button class="btn btn-icon btn-icon-lg btn-outline" id="timer-reset-btn" title="Reset Session">
+                <span style="font-size: 1.25rem;">↺</span>
+              </button>
+
+              <button class="btn btn-primary timer-main-btn" id="timer-toggle-btn">
+                <span>▶️</span>
+                <span>Start Focus</span>
+              </button>
+
+              <button class="btn btn-icon btn-icon-lg btn-outline" id="timer-skip-btn" title="Skip Session">
+                <span style="font-size: 1.25rem;">⏭</span>
+              </button>
+            </div>
+
+            <div style="font-weight: 600; font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 2rem;"
+              id="timer-sessions-count">
+              0 Intervals Completed Today
+            </div>
+
+            <!-- Link Timer to Study Task -->
+            <div class="card" style="text-align: left; margin-bottom: 1.5rem;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label" for="timer-task-select">
+                  <span>📌</span>
+                  <span>Link Timer to a Study Planner Task</span>
+                </label>
+                <select id="timer-task-select" class="form-control">
+                  <option value="">None (Free Study Block)</option>
+                  <!-- Populated by TimerManager.populateTaskDropdown() -->
+                </select>
+              </div>
+            </div>
+
+            <!-- Synthesized Ambient Sound Player -->
+            <div class="ambient-sound-card">
+              <div>
+                <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary); margin-bottom: 0.2rem;">
+                  🎧 Synthesized Ambient Noise (Web Audio)
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">
+                  Enhances concentration without external audio streaming
+                </div>
+              </div>
+
+              <div class="ambient-options">
+                <button class="ambient-btn" data-sound="rain">🌧️ Rain</button>
+                <button class="ambient-btn" data-sound="whitenoise">💨 White Noise</button>
+                <button class="ambient-btn" data-sound="alpha">🧠 Alpha Beats</button>
+                <button class="ambient-btn" data-sound="none">🔇 Off</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===========================================================
+             PAGE 7: AI STUDY COPILOT
+             =========================================================== -->
+        <section id="section-ai-copilot" class="page-section">
+          <!-- Future-Ready Architecture Notice -->
+          <div class="card card-gradient-border" style="margin-bottom: 2rem;">
+            <div
+              style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+              <div>
+                <span class="badge badge-purple" style="margin-bottom: 0.5rem;">⚡ AI Heuristic Engine v1.0</span>
+                <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.35rem;">
+                  StudyVerse AI Copilot
+                </h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; max-width: 680px;">
+                  Empower your study workflow with client-side NLP heuristics. Summarize lecture slides, extract
+                  interactive quiz flashcards from study text, and generate personalized exam roadmaps.
+                </p>
+              </div>
+              <span class="badge badge-success" style="font-size: 0.8rem; padding: 0.4rem 0.85rem;">
+                Gemini &amp; OpenAI API Ready
+              </span>
+            </div>
+          </div>
+
+          <!-- Feature 1: Note Summarizer -->
+          <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">
+                  <span>📝</span>
+                  <span>Smart Lecture Notes Summarizer</span>
+                </h3>
+                <div class="card-subtitle">Paste raw lecture notes, textbooks, or articles to extract key takeaways
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <textarea id="ai-notes-input" class="form-control" style="min-height: 120px;"
+                placeholder="Paste paragraph of notes here (e.g. Convolutional Neural Networks are deep learning architectures designed for processing grid-structured data like images. They use convolutional layers that apply filter kernels to learn spatial feature hierarchies...)"></textarea>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+              <button class="btn btn-primary" id="ai-summarize-btn">
+                <span>✨ Generate Summary</span>
+              </button>
+            </div>
+
+            <div id="ai-summary-result"></div>
+          </div>
+
+          <!-- Feature 2: Note-to-Quiz Generator -->
+          <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">
+                  <span>🧠</span>
+                  <span>AI Note-to-Quiz &amp; Flashcard Generator</span>
+                </h3>
+                <div class="card-subtitle">Transform your study notes into interactive multiple-choice practice items
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <textarea id="ai-quiz-notes-input" class="form-control" style="min-height: 120px;"
+                placeholder="Paste syllabus concepts or revision summaries to generate customized practice questions..."></textarea>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+              <button class="btn btn-primary" id="ai-generate-quiz-btn">
+                <span>🎯 Generate Practice Quiz</span>
+              </button>
+            </div>
+
+            <div id="ai-quiz-result"></div>
+          </div>
+
+          <!-- Feature 3: Personalized Study Plan Generator -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">
+                  <span>📅</span>
+                  <span>Personalized Exam Study Roadmap</span>
+                </h3>
+                <div class="card-subtitle">Synthesizes your pending tasks, upcoming exam countdown, and weak subject
+                  areas</div>
+              </div>
+              <button class="btn btn-primary btn-sm" id="ai-generate-plan-btn">
+                <span>Generate Roadmap</span>
+              </button>
+            </div>
+
+            <div id="ai-plan-result">
+              <div style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                Click "Generate Roadmap" to analyze your current tasks and exam countdown.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===========================================================
+             PAGE 8: SETTINGS & PROFILE
+             =========================================================== -->
+        <section id="section-settings" class="page-section">
+          <div class="settings-container">
+            <!-- Student Profile Section -->
+            <div class="settings-section-card">
+              <h3 class="card-title" style="margin-bottom: 1rem;">
+                <span>👤</span>
+                <span>Student Profile &amp; Academic Course</span>
+              </h3>
+
+              <form id="settings-profile-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="settings-input-name">Student Full Name</label>
+                    <input type="text" id="settings-input-name" class="form-control" required value="Alex Sharma">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="settings-input-course">Course / Degree Program</label>
+                    <input type="text" id="settings-input-course" class="form-control" required
+                      value="BCA (Artificial Intelligence & Data Science)">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Choose Avatar</label>
+                  <div class="avatar-selector-grid">
+                    <div class="avatar-option selected">🎓</div>
+                    <div class="avatar-option">🚀</div>
+                    <div class="avatar-option">💻</div>
+                    <div class="avatar-option">🤖</div>
+                    <div class="avatar-option">🧠</div>
+                    <div class="avatar-option">⚡</div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="settings-input-exam">Target University Exam Name</label>
+                    <input type="text" id="settings-input-exam" class="form-control"
+                      value="AI & Data Structures University Finals">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="settings-input-exam-date">Exam Date</label>
+                    <input type="date" id="settings-input-exam-date" class="form-control">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="settings-input-goal">Daily Study Goal (Hours)</label>
+                  <input type="number" id="settings-input-goal" class="form-control" min="1" max="12" step="0.5"
+                    value="3.5">
+                </div>
+
+                <div style="display: flex; justify-content: flex-end;">
+                  <button type="submit" class="btn btn-primary">
+                    <span>Save Profile Settings</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Appearance & Theme Section -->
+            <div class="settings-section-card">
+              <h3 class="card-title" style="margin-bottom: 0.5rem;">
+                <span>🎨</span>
+                <span>Visual Theme</span>
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                Select between modern Light Lavender or sleek Cyber Dark styling.
+              </p>
+
+              <div class="theme-options-grid">
+                <div class="theme-card-option selected" data-theme-value="light">
+                  <span style="font-size: 1.5rem;">☀️</span>
+                  <div>
+                    <div style="font-weight: 700; color: var(--text-primary);">Lavender Light</div>
+                    <div style="font-size: 0.78rem; color: var(--text-secondary);">Clean purple &amp; white cards</div>
+                  </div>
+                </div>
+
+                <div class="theme-card-option" data-theme-value="dark">
+                  <span style="font-size: 1.5rem;">🌙</span>
+                  <div>
+                    <div style="font-weight: 700; color: var(--text-primary);">Cyber Dark</div>
+                    <div style="font-size: 0.78rem; color: var(--text-secondary);">Deep obsidian &amp; neon indigo</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Audio Preferences -->
+            <div class="settings-section-card">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <h3 class="card-title" style="margin-bottom: 0.25rem;">
+                    <span>🔊</span>
+                    <span>Sound Effects &amp; Audio Feedback</span>
+                  </h3>
+                  <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                    Play chimes for task completions, quiz answers, and level fanfares.
+                  </div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="settings-sound-toggle" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Data Management & Backups -->
+            <div class="settings-section-card">
+              <h3 class="card-title" style="margin-bottom: 0.5rem;">
+                <span>💾</span>
+                <span>Data Management &amp; Persistence</span>
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+                All your study data is stored securely in your browser's localStorage. You can export JSON backups or
+                restore previous data.
+              </p>
+
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <button class="btn btn-secondary" id="settings-export-btn">
+                  <span>📥 Export Data (JSON)</span>
+                </button>
+
+                <button class="btn btn-secondary" id="settings-import-btn">
+                  <span>📤 Import Backup (JSON)</span>
+                </button>
+                <input type="file" id="settings-import-file" accept=".json" style="display: none;">
+
+                <button class="btn btn-outline" id="settings-demo-data-btn">
+                  <span>✨ Reload Demo Data</span>
+                </button>
+
+                <button class="btn btn-danger" id="settings-clear-btn" style="margin-left: auto;">
+                  <span>🗑️ Reset All Data</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Mobile Bottom Navigation Dock -->
+      <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+        <a href="#dashboard" class="mobile-nav-link active" data-page="dashboard">
+          <i>🏠</i>
+          <span>Home</span>
+        </a>
+        <a href="#planner" class="mobile-nav-link" data-page="planner">
+          <i>📅</i>
+          <span>Planner</span>
+        </a>
+        <a href="#quiz" class="mobile-nav-link" data-page="quiz">
+          <i>🎯</i>
+          <span>Quiz</span>
+        </a>
+        <a href="#pomodoro" class="mobile-nav-link" data-page="pomodoro">
+          <i>⏱️</i>
+          <span>Focus</span>
+        </a>
+        <a href="#rewards" class="mobile-nav-link" data-page="rewards">
+          <i>🏆</i>
+          <span>Rewards</span>
+        </a>
+        <a href="#analytics" class="mobile-nav-link" data-page="analytics">
+          <i>📊</i>
+          <span>Progress</span>
+        </a>
+      </nav>
+
+    </div>
+  </div>
+
+  <!-- ===============================================================
+       ACCESSIBLE MODAL CONTAINER
+       =============================================================== -->
+  <div class="modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="card-title" id="modal-title">Modal Title</h3>
+        <button class="btn-icon" onclick="App.closeModal()" title="Close dialog">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body-content"></div>
+      <div class="modal-footer" id="modal-footer-actions"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- ===============================================================
+       JAVASCRIPT SCRIPTS
+       =============================================================== -->
+  <!-- 1. Offline Vendor Libraries -->
+  <script src="vendor/chart.umd.min.js"></script>
+  <script src="vendor/confetti.browser.min.js"></script>
+  <script src="vendor/lucide.min.js"></script>
+
+  <!-- 2. Application Modules -->
+  <script src="js/storage.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/rewards.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/ai-assistant.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
